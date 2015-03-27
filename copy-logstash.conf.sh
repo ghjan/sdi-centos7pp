@@ -5,3 +5,7 @@
 if [[ -d /logs ]] && [[ ! -f /logs/logstash.conf ]] && [[ -f /etc/logstash.conf ]] ; then
 	cp /etc/logstash.conf /logs
 fi
+
+if [[ -d /logs ]] && [[ ! -f /logs/logstash.pattern ]] && [[ -f /etc/logstash.pattern ]] ; then
+	cp /etc/logstash.pattern /logs
+fi
