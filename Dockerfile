@@ -13,7 +13,10 @@ RUN mkdir /var/log/supervisor
 
 RUN sed -r -i 's#logfile=/var/log/supervisor/supervisord.log#logfile=/var/log/supervisord.log#' /etc/supervisord.conf
 
-RUN mkdir /docker-entrypoint.d /logs
+RUN mkdir /docker-entrypoint.d /logs /docker-entrypoint-ext.d
 ADD docker-entrypoint.sh /
 ADD copy-logstash.conf.sh /docker-entrypoint.d/copy-logstash.conf.sh
+
+VOLUME ["/docker-entrypoint-ext.d", "/logs"]
+
 ENTRYPOINT ["/docker-entrypoint.sh"]

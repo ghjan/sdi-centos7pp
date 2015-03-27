@@ -17,6 +17,8 @@ mechanism has been copied by me.
 The Dockerfile defines the script **/docker-entrypoint.sh** as ENTRYPOINT. It sources all Files /docker-entrypoint.d/\*.sh.
 Afterwards it executes the Command given. Any initialization steps of the **container** should go as script into
 the directory **/docker-entrypoint.d**. The script has to be written in a way that it can be executed every time the container starts.
+The directory **/docker-entrypoint-ext.d** is defined as VOLUME and is treated the same way like the directory **/docker-entrypoint.d**.
+If you need to run something in the container at startup, that is not included in the image, you me put it there an mount the volume.
 
 The **docker-entrypoint.sh**:
 
@@ -24,14 +26,23 @@ The **docker-entrypoint.sh**:
 	set -e
 
 	if [[ -d /docker-entrypoint.d ]] ; then
-			for file in /docker-entrypoint.d/*.sh
-			do
-					echo "docker-entrypoint.sh : Sourcing $file"
-					[[ -f $file ]] && . $file
-			done
-	fi
+		for file in /docker-entrypoint.d/*.sh
+		do
+			echo "docker-entrypoint.sh : Sourcing $file"
+		    [[ -f $file ]] && . $file
+	    done
+    fi
 
-	exec "$@"
+    if [[ -d /docker-entrypoint-ext.d ]] ; then
+    	for file in /docker-entrypoint-ext.d/*.sh
+    	do
+    		echo "docker-entrypoint.sh : Sourcing Ext $file"
+    		[[ -f $file ]] && . $file
+    	done
+    fi
+    
+    exec "$@"
+
 
 ## Every container's entrypoint script
 
