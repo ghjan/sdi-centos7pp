@@ -3,7 +3,7 @@
 # and the file is not already there
 
 if [[ -d /logs ]] && [[ ! -f /logs/logstash.conf ]] && [[ -f /etc/logstash.conf ]] ; then
-	cp /etc/logstash.conf /logs
+	sed  "s/\$LOGSTASH_PORT/$LOGSTASH_PORT/" < /etc/logstash.conf > /logs/logstash.conf
 fi
 
 if [[ -d /logs ]] && [[ ! -f /logs/logstash.pattern ]] && [[ -f /etc/logstash.pattern ]] ; then
