@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+[[ $DEBUG_ENTRYPOINT_SCRIPTS ]] && set -x
+
 if [[ -d /docker-entrypoint.d ]] ; then
 	for file in /docker-entrypoint.d/*.sh
 	do
@@ -16,6 +18,8 @@ if [[ -d /docker-entrypoint-ext.d ]] ; then
 		[[ -f $file ]] && . $file
 	done
 fi
+
+[[ $DEBUG_ENTRYPOINT_SCRIPTS ]] && set +x
 
 exec "$@"
 
