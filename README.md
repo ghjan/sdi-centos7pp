@@ -1,6 +1,6 @@
 # sdi-centos7 (Sumpfgottheit's Docker Image for CentOS7)
 
-A docker image, based on the official CentOS 7 Release with minimal changes.
+A docker image, based on the official CentOS 7 Release with minimal changes. This image is the base image for all sdi-Images.
 
 See the [Sumpfgottheit's Docker Image wiki](https://github.com/sumpfgottheit/sdi-centos7/wiki) for the concept and idea behind the SDI images.
 
