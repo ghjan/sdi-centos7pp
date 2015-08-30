@@ -5,7 +5,7 @@ ADD set_bash_environment.sh /etc/profile.d/
 RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
 RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
-RUN yum -y install wget tar net-tools telnet openssh-server openssh-clients supervisor
+RUN yum -y install wget tar net-tools telnet openssh-server openssh-clients supervisor sudo
 RUN yum -y update
 RUN yum -y clean all
 RUN rm -fr /var/log/*
