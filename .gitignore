@@ -1,2 +1,4 @@
 build
 .Dockerfile
+ca.pem
+proxy.pem
