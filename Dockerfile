@@ -11,7 +11,8 @@ RUN yum -y clean all
 RUN rm -fr /var/log/*
 RUN mkdir /var/log/supervisor
 
-RUN timedatectl set-timezone  Europe/Vienna
+RUN rm -f /etc/localtime
+RUN ln -s /usr/share/zoneinfo/Europe/Vienna /etc/localtime
 
 RUN sed -r -i 's#logfile=/var/log/supervisor/supervisord.log#logfile=/var/log/supervisord.log#' /etc/supervisord.conf
 
