@@ -11,6 +11,8 @@ RUN yum -y clean all
 RUN rm -fr /var/log/*
 RUN mkdir /var/log/supervisor
 
+RUN timedatectl set-timezone  Europe/Vienna
+
 RUN sed -r -i 's#logfile=/var/log/supervisor/supervisord.log#logfile=/var/log/supervisord.log#' /etc/supervisord.conf
 
 RUN mkdir /docker-entrypoint.d /logs /docker-entrypoint-ext.d
